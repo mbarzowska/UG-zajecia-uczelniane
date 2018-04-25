@@ -1,0 +1,69 @@
+<!-- NAVBAR Z TEKSTEM REFRESH -->
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light mynavbar">
+  <a class="navbar-brand" href="/#"><span class='fa fa-gamepad'></span> Playground Coffee</a>
+    <ul class="navbar-nav mr-auto">
+      <a class="nav-link" href="https://www.github.com/mbarzowska">Author</a>
+    </ul>
+    <div class="divrightoriented">
+      <%= form_tag(games_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search for games" %>
+          <%= button_tag(type: 'submit', class: "btn btn-primary minebtn btn-sm") do %>
+            <span class='fa fa-search'></span>
+          <% end %>
+        <% end %>
+        <% if @games.blank? && Game.count != 0 %>
+          There are no games which name contains '<%= params[:search] %>' <a href="/#">Refresh</a>.
+          <% end %>
+        <% if Game.count == 0 %>
+          There are no games
+        <% end %>
+    </div>
+</nav> -->
+
+<!-- NAVBAR Z DWOMA PRZYCISKAMI -->
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light mynavbar">
+  <a class="navbar-brand" href="/#"><span class='fa fa-gamepad'></span> Playground Coffee</a>
+    <ul class="navbar-nav mr-auto">
+      <a class="nav-link" href="https://www.github.com/mbarzowska">Author</a>
+    </ul>
+    <div class="divrightoriented">
+      <%= form_tag(games_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search for games" %>
+          <%= button_tag(type: 'submit', class: "btn btn-primary minebtn btn-sm") do %>
+            <span class='fa fa-search'></span>
+          <% end %>
+          <a href="/#" ><button class="btn btn-custom minebtn btn-sm"><span class='fa fa-times'></span></button></a>
+        <% end %>
+        <% if @games.blank? && Game.count != 0 %>
+          There are no games which name contains '<%= params[:search] %>'
+        <% end %>
+        <% if Game.count == 0 %>
+          There are no games
+        <% end %>
+    </div>
+</nav> -->
+
+<!-- NAVBAR Z JEDNYM PRZYCISKIEM PRÓBA -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light mynavbar">
+  <a class="navbar-brand" href="/#"><span class='fa fa-gamepad'></span> Playground Coffee</a>
+    <ul class="navbar-nav mr-auto">
+      <a class="nav-link" href="https://www.github.com/mbarzowska">Author</a>
+    </ul>
+    <div class="divrightoriented">
+      <%= form_tag(games_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search for games" %>
+          <div class="btn-group minebtn btn-sm" role="group">
+            <%= button_tag(type: 'submit', class: "btn btn-primary minebtn btn-sm") do %>
+              <span class='fa fa-search'></span>
+            <% end %>
+            <%= link_to(raw('<span class="fa fa-times"></span>'), games_path, class: 'btn btn-custom minebtn btn-sm') %>
+          </div>
+        <% end %>
+        <% if @games.blank? && Game.count != 0 %>
+          There are no games which name contains '<%= params[:search] %>' &emsp;
+        <% end %>
+        <% if Game.count == 0 %>
+          There are no games &emsp;
+        <% end %>
+    </div>
+</nav>

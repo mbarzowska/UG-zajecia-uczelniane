@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Board games</title>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container">
+      <% if content_for?(:navbar) %>
+        <%= yield(:navbar) %>
+      <% else %>
+        <nav class=" navbar navbar-expand-lg navbar-light bg-light mynavbar">
+          <a class="navbar-brand" href="/#"><span class='fa fa-gamepad'></span> Playground Coffee</a>
+          <ul class="navbar-nav mr-auto">
+            <a class="nav-link" href="https://www.github.com/mbarzowska">Author</a>
+          </ul>
+        </nav>
+      <% end %>
+
+      <%= yield %>
+
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <!-- Latest compiled JavaScript -->
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    </div>
+  </body>
+
+  <br/>  <br/>  <br/>  <br/>
+
+  <footer class="customfooter">Board games shop &#38; rental database <br/> &copy; 2018</footer>
+</html>

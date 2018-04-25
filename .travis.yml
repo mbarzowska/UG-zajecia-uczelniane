@@ -1,0 +1,29 @@
+matrix:
+  include:
+  - language: ruby
+    rvm: 
+      - 2.4
+    before_script: cd ruby-and-ruby-on-rails/ruby-testing
+    script:
+      - cd MiniTest; bundle install; bundle exec rspec -fd; cd ..
+      - cd CodeQuizzes; bundle install; bundle exec rspec -fd; cd ..
+      - cd MergeSort-project; bundle install; bundle exec rspec -fd; cd ..
+  - language: csharp
+    dist: trusty
+    mono: none
+    dotnet: 2.0.0
+    before_script: cd dotNET/ASPMVC-app-and-testing/BoardGames                  
+    script:
+    - dotnet restore
+    - dotnet build BoardGames/BoardGames.csproj
+    - dotnet test BoardGames.Tests
+    - dotnet test BoardGames.Moq
+    # https://github.com/Microsoft/vstest-docs/blob/master/docs/filter.md
+    # http://dontcodetired.com/blog/post/Running-and-Filtering-Tests-with-the-NET-Core-Command-Line-Test-Runner
+    # https://github.com/travis-ci/travis-ci/issues/8283 
+  - language: java
+    jdk: oraclejdk8
+    before_script: cd testowanie-JAVA/projekt1-mbarzowska
+    script: 
+    - mvn test
+    

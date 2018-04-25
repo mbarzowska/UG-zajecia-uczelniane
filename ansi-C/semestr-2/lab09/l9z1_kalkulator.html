@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<meta charset="utf-8">
+
+<head>
+  <title>Laboratorium 9, Zadanie 1 - Kalkulator</title>
+</head>
+
+<body>
+  <form action="l9z1_wynik.php" method="post">
+    <table bgcolor="yellow">
+      <tr>
+        <td>
+          <center>Podaj pierwszą liczbę</center>
+          <input type="number" name="arg1"/>
+        </td>
+        
+        <td>
+          +<input type="radio" name="operator" value="+">
+          -<input type="radio" name="operator" value="-">
+          *<input type="radio" name="operator" value="*">
+          /<input type="radio" name="operator" value="/">
+        </td>
+        
+        <td>
+          <center>Podaj drugą liczbę</center>
+          <input type="number" name="arg2"/>
+        </td>
+        
+        <td>
+          <input type="submit" value="==">
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

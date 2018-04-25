@@ -1,0 +1,50 @@
+﻿@using BoardGames.Models
+@model BoardGames.Models.Publisher
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Publisher</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input asp-for="CompanyName" class="form-control" id="pedit_CompanyNameBox"/>
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FoundingDate" class="control-label"></label>
+                <input asp-for="FoundingDate" class="form-control" id="pedit_FoundingDateBox"/>
+                <span asp-validation-for="FoundingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryOfOrigin" class="control-label"></label>
+                <input asp-for="CountryOfOrigin" class="form-control" id="pedit_CountryOfOriginBox"/>
+                <span asp-validation-for="CountryOfOrigin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telephone" class="control-label"></label>
+                <input asp-for="Telephone" class="form-control" id="pedit_TelephoneBox"/>
+                <span asp-validation-for="Telephone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" id="pedit_submit"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-default">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

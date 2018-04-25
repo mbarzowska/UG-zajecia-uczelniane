@@ -1,0 +1,85 @@
+﻿@using BoardGames.Models
+@model IEnumerable<BoardGames.Models.Game>
+
+
+    @{
+        ViewData["Title"] = "Games List";
+    }
+
+    <h2>Games List</h2>
+
+    @if (User.IsInRole("Admin")) {
+        <p>
+            <a asp-action="Create" class="btn btn-default"><font color="green">Add New Item</font></a>
+        </p>
+    }
+    <form asp-controller="Games" asp-action="Index" method="get">
+        <p>
+            Search by title: <input type="text" name="SearchString">
+            <input type="submit" value="Filter" class="btn btn-default" /> <a asp-action="Index" class="btn btn-default">Back to Full List</a>
+        </p>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Title)</a>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Genre)
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["MingamersSortParm"]">@Html.DisplayNameFor(model => model.MinGamers)</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["MaxgamersSortParm"]">@Html.DisplayNameFor(model => model.MaxGamers)</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.ReleaseDate)</a>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Publisher)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Genre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MinGamers)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaxGamers)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReleaseDate)
+                    </td>
+                    <td>
+                        <bargain>@Html.DisplayFor(modelItem => item.Price)</bargain>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Publisher.CompanyName)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-default"><font color="blue">Details</font></a>
+                        @if (User.IsInRole("Admin")) {
+                            <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-default"><font color="orange">Edit</font></a>
+                            <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-default"><font color="red">Delete</font></a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @{Html.RenderPartial("_OwnUpToDateCommentBar");}

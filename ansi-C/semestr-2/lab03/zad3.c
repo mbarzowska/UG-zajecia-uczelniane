@@ -1,0 +1,31 @@
+// Sprawdzić, wykonując odpowiednie testy, jak działają operacje rzutowania z typów ,,mniejszych'' do ,,większych'' i odwrotnie. Na przykład, czemu są równe:
+// (int)FLT_MAX
+// (int)DBL_MAX
+// (double)LDBL_MAX
+
+#include<stdio.h>
+#include<limits.h>
+#include<float.h>
+
+int main() {
+  printf("FLT_MAX -> (int)FLT_MAX:\n%e -> %i\n\n", FLT_MAX, (int)FLT_MAX);
+  // max (czyli najbliższe zadanej(float)) liczbe w innym typie (int)
+  printf("INT_MAX -> (float)INT_MAX:\n%i -> %e\n\n", INT_MAX, (float)INT_MAX);
+  // max int (float > int)
+  printf("DBL_MAX -> (int)DBL_MAX:\n%e -> %i\n", DBL_MAX, (int)DBL_MAX);
+  // max int
+  printf("INT_MAX -> (double)INT_MAX:\n%i -> %e\n\n", INT_MAX, (double)INT_MAX);
+  // max int (double > int)
+  printf("LDBL_MAX -> (double)LDBL_MAX:\n%Le -> %e\n\n", LDBL_MAX, (double)LDBL_MAX);
+
+  printf("(double)LDBL_MAX podzielone przez 2:\n %e \n\n", (double)LDBL_MAX/2);
+
+  printf("(double)LDBL_MAX podzielone przez 4:\n %e \n\n", (double)LDBL_MAX/4);
+  // infinity
+
+  printf("LONG_MAX -> (float)LONG_MAX:\n%li -> %e\n\n", LONG_MAX, (float)LONG_MAX);
+  // max long (float > long)
+
+  printf("INT_MAX -> (float)INT_MAX:\n%i -> %e\n\n", INT_MAX, (float)INT_MAX);
+  // max int (float > int)
+}

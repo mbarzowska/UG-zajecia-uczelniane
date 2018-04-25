@@ -1,0 +1,7 @@
+{
+  "name": "crud-52-mbarzowska",
+  "private": true,
+  "dependencies": {
+    "sweetalert": "^2.1.0"
+  }
+}

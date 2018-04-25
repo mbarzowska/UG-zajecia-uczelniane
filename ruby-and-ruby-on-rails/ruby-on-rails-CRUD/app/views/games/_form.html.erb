@@ -1,0 +1,49 @@
+<%= form_with(model: game, local: true) do |form| %>
+  <% if game.errors.any? %>
+    <div id="error_explanation">
+      <h2 class="error_explanation"><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+      <% game.errors.full_messages.each do |message| %>
+        <li class="error_explanation"><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td><%= form.label :name %></td>
+    <td><%= form.text_field :name %></td>
+  </tr>
+  <tr>
+    <td><%= form.label :publisher %></td>
+    <td><%= form.text_field :publisher %></td>
+  </tr>
+  <tr>
+    <td><%= form.label :min_players %></td>
+    <td><%= form.text_field :min_players %></td>
+  </tr>
+  <tr>
+    <td><%= form.label :max_players %></td>
+    <td><%= form.text_field :max_players %></td>
+  </tr>
+  <tr>
+    <td><%= form.label :release_date %></td>
+    <td><%= form.date_select :release_date, :start_year=>1900 %></td>
+  </tr>
+  <tr>
+    <td><%= form.label :price %></td>
+    <td><%= form.text_field :price, options = {placeholder: "00.00"}%></td>
+  </tr>
+  </table>
+
+
+  <div class="actions">
+    <%= form.submit "Submit", :class => "btn btn-success minebtn btn-sm" %>
+  </div>
+<% end %>

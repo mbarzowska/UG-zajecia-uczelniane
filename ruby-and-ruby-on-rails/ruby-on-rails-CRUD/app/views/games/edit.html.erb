@@ -1,0 +1,10 @@
+<<p id="notice"><%= modified_notice %></p> 
+
+<h2>Editing a game <%= @game.name %> </h2>
+
+<%= render 'form', game: @game %>
+
+<br/>
+
+<%= link_to 'Show', @game, :class => "btn btn-primary minebtn btn-sm" %>
+<%= link_to 'Back', games_path, :class => "btn btn-primary minebtn btn-sm"  %>

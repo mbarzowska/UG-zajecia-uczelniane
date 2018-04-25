@@ -1,0 +1,110 @@
+﻿@using BoardGames.Models
+@model IEnumerable<BoardGames.Models.Publisher>
+
+@{
+    ViewData["Title"] = "Publishers List";
+}
+
+<h2>Publishers List</h2>
+
+@if (User.IsInRole("Admin")) {
+    <p>
+        <a asp-action="Create" class="btn btn-default" id="publishers_create"><font color="green">Add New</font></a>
+    </p>
+}
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" />
+            <a asp-action="" class="btn btn-default">Back to Full List</a>
+        </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.CompanyName)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.FoundingDate)</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountryOfOrigin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </th>
+            <th>
+                No. of games
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FoundingDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountryOfOrigin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Games.Count)
+                </td>
+                <td>
+                    <a asp-action="Index" asp-route-id="@item.ID" class="btn btn-default" id="publishers_select"><font color="blue">Select</font></a>
+                    <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-default" id="publishers_details"><font color="blue">Details</font></a>
+                    @if (User.IsInRole("Admin")) {
+                        <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-default" id="publishers_edit"><font color="orange">Edit</font></a>
+                        <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-default" id="publishers_delete"><font color="red">Delete</font></a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+@if (ViewContext.RouteData.Values["id"] != null) {
+    int tmpID = Int32.Parse(ViewContext.RouteData.Values["id"].ToString());
+    Publisher publisher = null;
+    foreach (var entry in Model) {
+        if (entry.ID == tmpID) {
+            publisher = entry;
+        }
+    }
+
+    @if (publisher != null && publisher.Games.Count > 0) {
+        <h3>Games published by '@publisher.CompanyName'</h3>
+        <table class="table">
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+            </tr>
+            @foreach (var game in publisher.Games) {
+                <tr>
+                    <td>@game.Title</td>
+                    <td>@game.Genre</td>
+                </tr>
+            }
+        </table>
+
+    } else if (publisher.Games.Count == 0) {
+        <h3>'@publisher.CompanyName' hasn't relased any games yet.</h3>
+
+    }
+}
+
+
+@{Html.RenderPartial("_OwnUpToDateCommentBar");}

@@ -1,0 +1,29 @@
+<p id="notice"><%= modified_notice %></p>
+
+<h2>Game: <%= @game.name %></h2>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td><strong>Publisher:</strong></td>
+    <td><%= @game.publisher %></td>
+  </tr><tr>
+    <td><strong>Min. players:</strong></td>
+    <td><%= @game.min_players %></td>
+  </tr><tr>
+    <td><strong>Max. players:</strong></td>
+    <td><%= @game.max_players %></td>
+  </tr><tr>
+    <td><strong>Release date:</strong></td>
+    <td><%= @game.release_date %></td>
+  </tr><tr>
+    <td><strong>Price:</strong></td>
+    <td><%= @game.price %></td>
+  </tr>
+  </table>
+
+<%= link_to 'Edit', edit_game_path(@game), :class => "btn btn-warning minebtn btn-sm" %>
+<%= link_to 'Back', games_path, :class => "btn btn-primary minebtn btn-sm"  %>

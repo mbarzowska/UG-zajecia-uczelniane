@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="FoodParty.Views.PizzeriaPizzaSizesPage"
+             xmlns:behaviors="clr-namespace:FoodParty.Behaviors"
+			 NavigationPage.HasNavigationBar="False">
+	<ContentPage.Content>
+		<ScrollView>
+			<RelativeLayout Padding="20" 
+							BackgroundColor="#f5d87f">
+				<!-- HEADER -->
+				<BoxView Color="#9C3434" 
+						 HeightRequest="160" 
+						 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" />
+                <Label Text="&#x1f355; Available sizes" TextColor="#ffe082" 
+					   FontSize="40" 
+					   HorizontalTextAlignment="Center" 
+					   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Factor=0, Property=Y, Constant=40}" 
+					   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" />
+                <Label Text="{Binding PizzeriaName}" TextColor="#ffe082" 
+					   FontSize="24" 
+					   HorizontalTextAlignment="Center" 
+					   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=110}" 
+					   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" />
+				<!-- ADD SIZE -->
+				<StackLayout Padding="20" 
+							 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Factor=0, Property=Y, Constant=150}" 
+							 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" >
+					<Label Text="Size (in cm):" TextColor="#9C3434"/>
+					<Entry Text="{Binding Size}"
+						   Placeholder="e.g 21">
+                        <Entry.Behaviors>
+                            <behaviors:PositiveIntegerValidationBehavior/>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Button Text="Add size" TextColor="#ffe082"
+							BorderColor="#9C3434" BackgroundColor="#9C3434" 
+							Command="{Binding AddSize}"/>
+				</StackLayout>
+				<!-- SIZES LIST -->
+				<StackLayout Padding="20" 
+							 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Factor=0, Property=Y, Constant=310}" 
+							 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" >
+					<Label Text="Sizes:"
+						   TextColor="#862c2c"/>
+					<BoxView HeightRequest="2" 
+							 BackgroundColor="#862c2c"/>
+					<ListView ItemsSource="{Binding Sizes, Mode=TwoWay}"
+							  SelectedItem="{Binding SelectedSize, Mode=TwoWay}"
+							  SeparatorColor="#862c2c">
+						<ListView.ItemTemplate>
+							<DataTemplate>
+                                <TextCell Text="{Binding Delimeter, StringFormat='{0} &#x24cd;'}" TextColor="#862c2c"/>
+							</DataTemplate>
+						</ListView.ItemTemplate>
+					</ListView>
+				</StackLayout>
+			</RelativeLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="FoodParty.Views.PizzeriaEditDetailsPage"
+             xmlns:behaviors="clr-namespace:FoodParty.Behaviors"
+			 NavigationPage.HasNavigationBar="False">
+	<ContentPage.Content>
+		<ScrollView>
+			<RelativeLayout Padding="20" 
+			                BackgroundColor="#f5d87f">
+			    <!-- HEADER -->
+				<BoxView Color="#9C3434" 
+				         HeightRequest="160" 
+						 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" />
+
+				<Frame CornerRadius="10" 
+				       Margin="0" Padding="0" 
+				       IsClippedToBounds="True" 
+					   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=.5, Constant = -35}" 
+					   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Factor=0, Property=Y, Constant=30}">
+					<Image Aspect="AspectFill" Source="{Binding ActualPizzeriaPhotoURL}" 
+					       HeightRequest="70" WidthRequest="70" />
+				</Frame>
+                <Label Text="{Binding ActualPizzeriaName}" TextColor="#ffe082" 
+				       FontSize="24" 
+				       HorizontalTextAlignment="Center" 
+					   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=110}" 
+					   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" />
+                <!-- SHOW SIZE BUTTON -->
+				<StackLayout Padding=" 0, 0, 20, 0" 
+							 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Factor=0, Property=Y, Constant=30}" 
+							 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" >
+                    <Button Text="Show sizes" TextColor="#862c2c" 
+                            BorderColor="#ffe082" BackgroundColor="#ffe082" 
+					        HorizontalOptions="EndAndExpand"
+					        Command="{Binding GoToPizzaSizes}" />
+				</StackLayout>
+                <!-- PIZZERIA DETAILS CHANGE -->
+				<StackLayout Padding="20" 
+							 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=150}" 
+							 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" >
+                    <Label Text="Change pizzeria's name:" TextColor="#862c2c"/>
+                    <Entry Text="{Binding PizzeriaName}" 
+					       Placeholder="e.g Pepe Pizza" >
+                        <Entry.Behaviors>
+                            <behaviors:PizzeriaNameValidationBehavior/>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Label Text="Change pizzeria's logo (URL):" TextColor="#862c2c"/>
+					<Entry Text="{Binding PizzeriaPhotoURL}" 
+					       Placeholder="e.g i.imgur.com/49FRo4A.png"/>
+                    <Button Text="Update" TextColor="#ffe082"
+                            BorderColor="#9C3434" BackgroundColor="#9C3434" 
+                            Command="{Binding UpdatePizzeria}"/>
+                    <Button Text="Delete" TextColor="#ffe082"
+                            BorderColor="#9C3434" BackgroundColor="#9C3434" 
+					        Command="{Binding DeletePizzeria}" />
+				</StackLayout>
+			</RelativeLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:controls="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+			 x:Class="FoodParty.Views.PizzeriasListPage"
+			 xmlns:behaviors="clr-namespace:FoodParty.Behaviors"
+			 xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+			 NavigationPage.HasNavigationBar="False">
+
+	<ContentPage.Content>
+		<ScrollView Margin="0" >
+			<StackLayout BackgroundColor="#f5d87f">
+				<!-- LISTVIEW -->
+				<StackLayout IsVisible="{Binding IsListMode}" VerticalOptions="FillAndExpand">
+					<!-- HEADER -->
+					<Grid BackgroundColor="#9C3434">
+						<Label Text="PIZZERIAS"
+							   TextColor="#ffe082"
+							   FontSize="Medium"
+							   Margin="10, 0, 0, 0"
+							   HorizontalOptions="StartAndExpand"
+							   VerticalOptions="CenterAndExpand"/>
+						<Button Text="COMPARE" 
+								TextColor="#ffe082"
+								FontSize="Micro"
+								BorderColor="Transparent"
+								BackgroundColor="Transparent"
+								HorizontalOptions="CenterAndExpand"
+								VerticalOptions="CenterAndExpand"
+								Command="{Binding GoToCompare}"/>
+						<Button Text="+&#x1f355;" 
+								TextColor="#ffe082"
+								FontSize="Large"
+								BorderColor="Transparent"
+								BackgroundColor="Transparent"
+								HorizontalOptions="EndAndExpand"
+								VerticalOptions="CenterAndExpand"
+								Command="{Binding VisibilitySwitchCommand}"/>
+					</Grid>
+					<!-- EXPAND FRAME - ADD NEW PIZZERIA -->
+					<StackLayout Spacing="0" Padding="20, 0, 20, 0" >
+						<Frame CornerRadius="10" Margin="20, 20, 20, 10" Padding="0" IsClippedToBounds="True" IsVisible="{Binding IsVisible}">
+							<StackLayout Spacing="5" Padding="20" BackgroundColor="#9C3434">
+								<!-- CELLS -->
+								<Label Text="Pizzeria's name:" 
+									   TextColor="#ffe082" />
+								<Entry Text="{Binding PizzeriaName}"  
+									   Placeholder="e.g. Pepe Pizza" >
+									<Entry.Behaviors>
+										<behaviors:PizzeriaNameValidationBehavior/>
+									</Entry.Behaviors>
+								</Entry>
+								<Label Text="Pizzeria's logo URL:" 
+									   TextColor="#ffe082" />
+								<Entry Text="{Binding PizzeriaPhotoURL}"  
+									   Placeholder="e.g. i.imgur.com/49FRo4A.png"/>
+								<!-- BUTTONS -->
+								<Button Text="Add pizzeria" 
+										TextColor="#862c2c"
+										BackgroundColor="#ffe082"
+										Command="{Binding AddCommand}" />
+								<Button Text="Cancel" 
+										TextColor="#862c2c"
+										BackgroundColor="#ffe082"
+										Command="{Binding VisibilitySwitchCommand}"/>
+							</StackLayout>
+						</Frame>
+					</StackLayout>
+					<!-- SWITCH -->
+					<Button Text="VIEW &#x25A2;"
+							TextColor="#862c2c"
+							FontSize="Small"
+							BackgroundColor="Transparent" BorderColor="Transparent"
+							HorizontalOptions="EndAndExpand"
+							Command="{Binding SwitchMode}"/>
+					<!-- LIST -->
+					<ListView ItemsSource="{Binding Pizzerias, Mode=TwoWay}"
+							  SelectedItem="{Binding SelectedPizzeria, Mode=TwoWay}"
+							  HasUnevenRows="true"
+							  SeparatorColor="#9c3434">
+						<ListView.ItemTemplate>
+							<DataTemplate>
+								<ViewCell>
+									<StackLayout BackgroundColor="#f5d87f" VerticalOptions="FillAndExpand" Orientation="Horizontal" Padding="10">
+										<Frame CornerRadius="10" Margin="0" Padding="0" IsClippedToBounds="True">
+											<ff:CachedImage Source="{Binding PhotoURL, Mode=TwoWay}" 
+															CacheDuration="5" 
+															ErrorPlaceholder="placeholder.png" 
+															Aspect="AspectFill" 
+															HeightRequest="75" WidthRequest="75" 
+															HorizontalOptions="Start"/> 
+											<!--<Image HeightRequest="75" WidthRequest="75" 
+														   Aspect="AspectFill"
+														   Source="{Binding PhotoURL, Mode=TwoWay}" 
+														   HorizontalOptions="Start"/>-->
+										</Frame>
+										<Label Text="{Binding Name, Mode=TwoWay}"
+													   TextColor="#862c2c"/>
+									</StackLayout>
+								</ViewCell>
+							</DataTemplate>
+						</ListView.ItemTemplate>
+					</ListView>
+				</StackLayout>
+
+				<!-- GRID VIEW -->
+				<StackLayout Padding="0" IsVisible="{Binding IsGridMode}">
+					<!-- HEADER -->
+					<Grid BackgroundColor="#9C3434">
+						<Label Text="PIZZERIAS"
+							   TextColor="#ffe082"
+							   FontSize="Medium"
+							   Margin="10, 0, 0, 0"
+							   HorizontalOptions="StartAndExpand"
+							   VerticalOptions="CenterAndExpand"/>
+						<Button Text="COMPARE" 
+								TextColor="#ffe082"
+								FontSize="Micro"
+								BorderColor="Transparent"
+								BackgroundColor="Transparent"
+								HorizontalOptions="CenterAndExpand"
+								VerticalOptions="CenterAndExpand"
+								Command="{Binding GoToCompare}"/>
+						<Button Text="+&#x1f355;" 
+								TextColor="#ffe082"
+								FontSize="Large"
+								BorderColor="Transparent"
+								BackgroundColor="Transparent"
+								HorizontalOptions="EndAndExpand"
+								VerticalOptions="CenterAndExpand"
+								Command="{Binding VisibilitySwitchCommand}"/>
+					</Grid>
+					<!-- EXPAND FRAME - ADD NEW PIZZERIA -->
+					<StackLayout Spacing="0" Padding="20, 0, 20, 0" >
+						<Frame CornerRadius="10" Margin="20, 20, 20, 10" Padding="0" IsClippedToBounds="True" IsVisible="{Binding IsVisible}">
+							<StackLayout Spacing="5" Padding="20" BackgroundColor="#9C3434">
+								<!-- CELLS -->
+								<Label Text="Pizzeria's name:" 
+									   TextColor="#ffe082" />
+								<Entry Text="{Binding PizzeriaName}"  
+									   Placeholder="e.g. Pepe Pizza" >
+									<Entry.Behaviors>
+										<behaviors:PizzeriaNameValidationBehavior/>
+									</Entry.Behaviors>
+								</Entry>
+								<Label Text="Pizzeria's logo URL:" 
+									   TextColor="#ffe082" />
+								<Entry Text="{Binding PizzeriaPhotoURL}"  
+									   Placeholder="e.g. i.imgur.com/49FRo4A.png"/>
+								<!-- BUTTONS -->
+								<Button Text="Add pizzeria" 
+										TextColor="#862c2c"
+										BackgroundColor="#ffe082"
+										Command="{Binding AddCommand}" />
+								<Button Text="Cancel" 
+										TextColor="#862c2c"
+										BackgroundColor="#ffe082"
+										Command="{Binding VisibilitySwitchCommand}"/>
+							</StackLayout>
+						</Frame>
+					</StackLayout>
+					<!--SWITCH-->
+					<Button Text=" VIEW &#x2630;" 
+							TextColor="#862c2c"
+							FontSize="Small"
+							BackgroundColor="Transparent" BorderColor="Transparent"
+							HorizontalOptions="EndAndExpand"
+							Command="{Binding SwitchMode}"/>
+					<!--GRID-->
+					<controls:FlowListView FlowColumnCount="3" SeparatorVisibility="None" HasUnevenRows="true" 
+										FlowItemTappedCommand="{Binding SelectedPizzeria, Mode=TwoWay}" FlowLastTappedItem="{Binding SelectedPizzeria, Mode=TwoWay}"
+										FlowItemsSource="{Binding Pizzerias, Mode=TwoWay}">
+						<controls:FlowListView.FlowColumnTemplate>
+							<DataTemplate>
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="100" />
+									</Grid.RowDefinitions>
+									<Frame CornerRadius="5" Margin="1" Padding="0" IsClippedToBounds="True">
+										<ff:CachedImage Source="{Binding PhotoURL, Mode=TwoWay}" 
+														CacheDuration="5" 
+														ErrorPlaceholder="placeholder.png" 
+														Aspect="AspectFill" />
+										<!--<Image Aspect="AspectFill" 
+											Source="{Binding PhotoURL, Mode=TwoWay}" />-->
+									</Frame>
+								</Grid>
+							</DataTemplate>
+						</controls:FlowListView.FlowColumnTemplate>
+					</controls:FlowListView>
+				</StackLayout>
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

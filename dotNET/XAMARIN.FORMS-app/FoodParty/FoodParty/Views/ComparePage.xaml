@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodParty.Views.ComparePage"
+             xmlns:behaviors="clr-namespace:FoodParty.Behaviors"
+             NavigationPage.HasNavigationBar="False">
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="0" BackgroundColor="#f5d87f">
+                <!-- CHANGE BUTTON -->
+                <Button Text="Change mode" TextColor="#ffe082" 
+                        Command="{Binding SwitchMode}"
+                        BackgroundColor="#9c3434" BorderColor="#9c3434" />
+                <!-- MANUAL MODE -->
+                <StackLayout Padding="20" IsVisible="{Binding IsManualMode}">
+                    <!-- HEADER -->
+                    <Label Text="Comparison mode: Custom" TextColor="#862c2c" 
+                           HorizontalTextAlignment="Center"
+                           Margin="0, 0, 0, 10"/>
+                    <!-- COMPARE PANEL BODY -->
+                    <Grid Padding="0, 0, 0, 10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <!-- FIRST COLUMN -->
+                        <StackLayout Grid.Row="0" Grid.Column="0">
+                            <Label Text="1st weight" TextColor="#862c2c"/>
+                            <Entry Text="{Binding WeightOne}">
+                                <Entry.Behaviors>
+                                    <behaviors:PositiveDecimalValidationBehavior/>
+                                </Entry.Behaviors>
+                            </Entry>
+                            <Label Text="1st price" TextColor="#862c2c"/>
+                            <Entry Text="{Binding PriceOne}">
+                                <Entry.Behaviors>
+                                    <behaviors:PriceValidationBehavior/>
+                                </Entry.Behaviors>
+                            </Entry>
+                        </StackLayout>
+                        <!-- SECOND COLUMN -->
+                        <StackLayout Grid.Row="0" Grid.Column="1">
+                            <Label Text="2nd weight" TextColor="#862c2c"/>
+                            <Entry Text="{Binding WeightTwo}">
+                                <Entry.Behaviors>
+                                    <behaviors:PositiveDecimalValidationBehavior/>
+                                </Entry.Behaviors>
+                            </Entry>
+                            <Label Text="2nd price" TextColor="#862c2c"/>
+                            <Entry Text="{Binding PriceTwo}">
+                                <Entry.Behaviors>
+                                    <behaviors:PriceValidationBehavior/>
+                                </Entry.Behaviors>
+                            </Entry>
+                        </StackLayout>
+                    </Grid>
+                    <!--COMPARE BUTTON -->
+                    <Button Text="Compare" TextColor="#ffe082" 
+                            Command="{Binding CompareWeightsToPrices}"
+                            BackgroundColor="#9c3434" BorderColor="#9c3434"/>
+                </StackLayout>
+                <!-- AUTO - PIZZERIA MODE -->
+                <StackLayout Padding="20" IsVisible="{Binding IsAutoMode}">
+                    <!-- HEADER -->
+                    <Label Text="Comparison mode: Pizzeria" TextColor="#862c2c" 
+                           HorizontalTextAlignment="Center"
+                           Margin="0, 0, 0, 10"/>
+                    <!-- COMPARE PANEL BODY -->
+                    <Frame CornerRadius="10" Margin="0" Padding="0" IsClippedToBounds="True" BackgroundColor="#9c3434">
+                        <Grid Padding="0, 0, 0, 10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <!-- FIRST COLUMN -->
+                            <StackLayout Grid.Row="0" Grid.Column="0"
+                                         Padding="10"
+                                         BackgroundColor="#9c3434">
+                                <Label Text="1st Pizzeria:" TextColor="#ffe082" HorizontalTextAlignment="Center"/>
+                                <Frame CornerRadius="10"  
+                                       Margin="0" Padding="0" 
+                                       IsClippedToBounds="True">
+                                    <Image Aspect="AspectFill" Source="{Binding FirstPizzeria.PhotoURL}" HeightRequest="50" WidthRequest="50"/>
+                                </Frame>
+                                <Picker ItemsSource="{Binding Pizzerias}" SelectedItem="{Binding FirstPizzeria, Mode=TwoWay}" ItemDisplayBinding="{Binding Name}" />
+                                <Label Text="{Binding FirstPizzeria.Name, StringFormat='Sizes from pizzeria: {0}'}" TextColor="#ffe082"/>
+                                <Picker ItemsSource="{Binding PizzaSizesFromFirstPizzeria}" SelectedItem="{Binding FirstPizzaSize, Mode=TwoWay}" ItemDisplayBinding="{Binding Delimeter}"/>
+                                <Label Text="1st price:" TextColor="#ffe082"/>
+                                <Entry Text="{Binding FirstPrice}">
+                                    <Entry.Behaviors>
+                                        <behaviors:PriceValidationBehavior/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </StackLayout>
+                            <!-- SECOND COLUMN -->
+                            <StackLayout Grid.Row="0" Grid.Column="1"
+                                         Padding="10"
+                                         BackgroundColor="#9c3434">
+                                <Label Text="2nd Pizzeria:" TextColor="#ffe082" HorizontalTextAlignment="Center"/>
+                                <Frame CornerRadius="10"  
+                                       Margin="0" Padding="0" 
+                                       IsClippedToBounds="True">
+                                    <Image Aspect="AspectFill" Source="{Binding SecondPizzeria.PhotoURL}" HeightRequest="50" WidthRequest="50"/>
+                                </Frame>
+                                <Picker ItemsSource="{Binding Pizzerias}" SelectedItem="{Binding SecondPizzeria, Mode=TwoWay}" ItemDisplayBinding="{Binding Name}"/>
+                                <Label Text="{Binding SecondPizzeria.Name, StringFormat='Sizes from pizzeria: {0}'}" TextColor="#ffe082"/>
+                                <Picker ItemsSource="{Binding PizzaSizesFromSecondPizzeria}" SelectedItem="{Binding SecondPizzaSize, Mode=TwoWay}" ItemDisplayBinding="{Binding Delimeter}"/>
+                                <Label Text="2nd price:" TextColor="#ffe082"/>
+                                <Entry Text="{Binding SecondPrice}">
+                                    <Entry.Behaviors>
+                                        <behaviors:PriceValidationBehavior/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                    <!--COMPARE BUTTON -->
+                    <Button Text="Compare Pizzerias" Command="{Binding ComparePizzerias}"
+                            TextColor="#ffe082"
+                            BorderColor="#9C3434" BackgroundColor="#9C3434"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

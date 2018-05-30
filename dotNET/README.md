@@ -42,3 +42,19 @@ Widoki
   konstruktorów do wyspecyfikowania repozytorium.
   - wykorzystanie jednego z frameworków IoC dla ASP MVC (StructureMap,  RhinoMocks i NSubstitute  lub Moq).
 4. Wykorzystanie Selenium WebDriver oraz Coded UI do testowania interfejsu użytkownika.
+```
+
+## [XAMARIN.FORMS_app](XAMARIN.FORMS-app)
+### Wymagania dotyczące zaliczenia na ocenę:
+```$xslt
+- zastosowanie pełnego wzorca MVVM - binding wartości oraz "command"
+- adaptatywny interface użytkownika - dotyczy zarówno geometrii jak i systemu operacyjnego
+- wykorzystanie zdarzeń związanych z cyklem życia aplikacji - OnStart, OnSleep, OnResume
+- wykorzystanie konstrukcji "DependencyService" do ujednolicenia asynchronicznego dostępu do plików
+- dodatkowe właściwości (dwie z wymienionych): 
+	- nawigacja stron z przekazywaniem wartości
+	- walidacja danych na formularzach
+	- zarządzanie konfiguracją aplikacji
+	- dostęp do danych zdalnych (np.: REST) i wykorzystanie pamięci podręcznej (cache)
+- usability
+```

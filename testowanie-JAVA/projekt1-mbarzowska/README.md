@@ -1,6 +1,6 @@
 # Testowanie aplikacji JAVA 2017-2018
 ## Projekt 1 (JUnit, narzędzie Hamcrest oraz MAVEN) 
-### Ważne informacje wyodrębnione z pierwotnego README.md z instrukcjami (całość [tutaj](https://github.com/TestowanieJAVA2017-2018Gr2/projekt1-mbarzowska/blob/master/INSTRUKCJE.md))
+### Ważne informacje wyodrębnione z pierwotnego README.md z instrukcjami (całość [tutaj](INSTRUKCJE.md))
 -----------------------
 ### REGUŁY GRY
 

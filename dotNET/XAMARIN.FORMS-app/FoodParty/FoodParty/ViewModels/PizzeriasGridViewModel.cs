@@ -50,7 +50,7 @@ namespace FoodParty.ViewModels
             {
                 return new Command(async () =>
                 {
-                    var pizzerias = await App.GetPizzeriaRepository.GetPizzeriasAsync();
+                    var pizzerias = await PizzeriaRepository.GetPizzeriasAsync();
                     Pizzerias = new ObservableCollection<Pizzeria>(pizzerias);
                 });
             }
@@ -69,7 +69,7 @@ namespace FoodParty.ViewModels
                             Name = PizzeriaName,
                             PhotoURL = PizzeriaPhotoURL
                         };
-                        await App.GetPizzeriaRepository.AddPizzeriaAsync(pizzeria);
+                        await PizzeriaRepository.AddPizzeriaAsync(pizzeria);
                         PizzeriaName = String.Empty;
                         PizzeriaPhotoURL = String.Empty;
                         RefreshCommand.Execute(null);

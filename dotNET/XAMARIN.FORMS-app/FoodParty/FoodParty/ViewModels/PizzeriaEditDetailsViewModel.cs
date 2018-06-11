@@ -77,10 +77,10 @@ namespace FoodParty.ViewModels
                 {
                     if (Validator.ValidatePizzeria(PizzeriaName))
                     {
-                        var pizzeria = await App.GetPizzeriaRepository.GetPizzeriaByIdAsync(PizzeriaId);
+                        var pizzeria = await PizzeriaRepository.GetPizzeriaByIdAsync(PizzeriaId);
                         pizzeria.Name = PizzeriaName;
                         pizzeria.PhotoURL = PizzeriaPhotoURL;
-                        var result = await App.GetPizzeriaRepository.UpdatePizzeriaAsync(pizzeria);
+                        var result = await PizzeriaRepository.UpdatePizzeriaAsync(pizzeria);
                         if (result)
                         {
                             await Application.Current.MainPage.DisplayAlert("Success!", "Pizzeria has been updated!", "Ok");
@@ -106,7 +106,7 @@ namespace FoodParty.ViewModels
                     var answer = await Application.Current.MainPage.DisplayAlert("Deleting", "Are you sure you want to delete this place?", "Yes", "No");
                     if (answer)
                     {
-                        await App.GetPizzeriaRepository.RemovePizzeriaAsync(PizzeriaId);
+                        await PizzeriaRepository.RemovePizzeriaAsync(PizzeriaId);
                         await Application.Current.MainPage.Navigation.PopToRootAsync();
                     }
                 });

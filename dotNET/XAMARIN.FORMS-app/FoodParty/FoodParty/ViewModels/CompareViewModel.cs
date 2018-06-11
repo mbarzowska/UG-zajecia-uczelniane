@@ -147,7 +147,7 @@ namespace FoodParty.ViewModels
             {
                 return new Command(async () =>
                 {
-                    var pizzerias = await App.GetPizzeriaRepository.GetPizzeriasAsync();
+                    var pizzerias = await PizzeriaRepository.GetPizzeriasAsync();
                     Pizzerias = new ObservableCollection<Pizzeria>(pizzerias);
                 });
             }
@@ -159,7 +159,7 @@ namespace FoodParty.ViewModels
             {
                 return new Command(async () =>
                 {
-                    var pizzaSizes = await App.GetSizeRepository.QuerySizesAsync(x => x.PizzeriaId == _firstPizzeria.Id);
+                    var pizzaSizes = await PizzaSizeRepository.QuerySizesAsync(x => x.PizzeriaId == _firstPizzeria.Id);
                     PizzaSizesFromFirstPizzeria = new ObservableCollection<PizzaSize>(pizzaSizes);
                 });
             }
@@ -171,7 +171,7 @@ namespace FoodParty.ViewModels
             {
                 return new Command(async () =>
                 {
-                    var pizzaSizes = await App.GetSizeRepository.QuerySizesAsync(x => x.PizzeriaId == _secondPizzeria.Id);
+                    var pizzaSizes = await PizzaSizeRepository.QuerySizesAsync(x => x.PizzeriaId == _secondPizzeria.Id);
                     PizzaSizesFromSecondPizzeria = new ObservableCollection<PizzaSize>(pizzaSizes);
                 });
             }

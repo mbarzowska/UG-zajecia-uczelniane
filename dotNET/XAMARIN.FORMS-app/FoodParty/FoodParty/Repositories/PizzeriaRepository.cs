@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using FoodParty.Data;
 using FoodParty.Models;
@@ -97,7 +96,7 @@ namespace FoodParty.Repositories
         {
             try 
             {
-                var pizzerias = _databaseContext.Pizzerias.Where(predicate);
+                var pizzerias = await Task.Run(() => _databaseContext.Pizzerias.Where(predicate));
                 return pizzerias.ToList();
             } 
             catch (Exception) 

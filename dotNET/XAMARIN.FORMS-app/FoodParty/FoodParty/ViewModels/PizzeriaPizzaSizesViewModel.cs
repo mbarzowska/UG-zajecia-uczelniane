@@ -4,13 +4,13 @@ using System.Text;
 using FoodParty.Models;
 using System.Collections.ObjectModel;
 using System.Linq;
+using FoodParty.Repositories;
 using Xamarin.Forms;
 using FoodParty.Validators;
 
 namespace FoodParty.ViewModels
 {
-    public class PizzeriaPizzaSizesViewModel : BaseViewModel
-    {
+    public class PizzeriaPizzaSizesViewModel : BaseViewModel {
         private int _pizzeriaId;
         public int PizzeriaId
         {
@@ -83,7 +83,7 @@ namespace FoodParty.ViewModels
                             Delimeter = Size
                         };
 
-                        await App.GetSizeRepository.AddSizeAsync(pizzaSize);
+                        await PizzaSizeRepository.AddSizeAsync(pizzaSize);
                         RefreshSizes.Execute(null);
                     }
                     else 
@@ -104,7 +104,7 @@ namespace FoodParty.ViewModels
                     var answer = await Application.Current.MainPage.DisplayAlert("Deleting", "Are you sure you want to delete this size?", "Yes", "No");
                     if (answer)
                     {
-                        await App.GetSizeRepository.RemoveSizeAsync(_selectedSize.Id);
+                        await PizzaSizeRepository.RemoveSizeAsync(_selectedSize.Id);
                         RefreshSizes.Execute(null);
                     }
                 });
@@ -114,7 +114,7 @@ namespace FoodParty.ViewModels
         public Command RefreshSizes {
             get {
                 return new Command(async () => {
-                    var sizes = await App.GetSizeRepository.QuerySizesAsync(x => x.PizzeriaId == PizzeriaId);
+                    var sizes = await PizzaSizeRepository.QuerySizesAsync(x => x.PizzeriaId == PizzeriaId);
                     Sizes = new ObservableCollection<PizzaSize>(sizes);
                 });
             }

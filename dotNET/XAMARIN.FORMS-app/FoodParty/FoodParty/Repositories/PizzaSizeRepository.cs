@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FoodParty.Data;
 using FoodParty.Models;
 using Microsoft.EntityFrameworkCore;
+using Xamarin.Forms.Xaml;
 
 namespace FoodParty.Repositories 
 {
@@ -97,8 +98,7 @@ namespace FoodParty.Repositories
         public async Task<IEnumerable<PizzaSize>> QuerySizesAsync(Func<PizzaSize, bool> predicate) 
         {
             try {
-                var sizes = _databaseContext.Sizes.Where(predicate).OrderBy(x => x.Delimeter);
-                return sizes.ToList();
+                return await Task.Run(() => _databaseContext.Sizes.Where(predicate).OrderBy(x => x.Delimeter));
             } 
             catch (Exception) 
             {

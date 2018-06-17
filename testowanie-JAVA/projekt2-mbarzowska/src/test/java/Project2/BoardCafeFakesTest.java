@@ -30,24 +30,24 @@ import org.assertj.core.api.Assertions;
 
 public class BoardCafeFakesTest {
 
-    UserInfoHandling userRepository;
-    LoggedUserInfoHandling loggedUserRepository;
-    GameInfoHandling gameRepository;
-    BookedGameHandling bookedGameRepository;
-    Validation validator;
+    private UserInfoHandling userRepository;
+    private LoggedUserInfoHandling loggedUserRepository;
+    private GameInfoHandling gameRepository;
+    private BookedGameHandling bookedGameRepository;
+    private Validation validator;
 
-    BoardCafe bc;
+    private BoardCafe bc;
 
-    User testDefaultUser;
-    String testDefaultUsersUsername, testDefaultUsersPassword;
-    User testDefaultSecondUser;
-    String testDefaultSecondUsersUsername, testDefaultSecondUsersPassword;
-    Game testDefaultGame;
-    String testDefaultGamesName; double testDefaultGamesPrice; int testDefaultGamesAHS; int testDefaultGamesAHE;
-    boolean[] testDefaultGamesDays; int testDefaultGamesUHS; int testDefaultGamesUHE; String testDefaultGamesDescription;
-    String testDefaultGamesBookDateUnavailDay, testDefaultGamesBookDateAvailDay,
+    private User testDefaultUser;
+    private String testDefaultUsersUsername, testDefaultUsersPassword;
+    private User testDefaultSecondUser;
+    private String testDefaultSecondUsersUsername, testDefaultSecondUsersPassword;
+    private Game testDefaultGame;
+    private String testDefaultGamesName; private double testDefaultGamesPrice; private int testDefaultGamesAHS; private int testDefaultGamesAHE;
+    private boolean[] testDefaultGamesDays; private int testDefaultGamesUHS; private int testDefaultGamesUHE; private String testDefaultGamesDescription;
+    private String testDefaultGamesBookDateUnavailDay, testDefaultGamesBookDateAvailDay,
             testDefaultGamesBookAvailTime, testDefaultGamesBookUnavailTime, testDefaultGamesBookTimeClosed;
-    String pathToMixedDatabase, pathToCorrectDatabase, pathToIncorrectDatabase, incorrectDatabasePath;
+    private String pathToMixedDatabase, pathToCorrectDatabase, pathToIncorrectDatabase, incorrectDatabasePath;
 
     @BeforeEach
     public void setUp() {

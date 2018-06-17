@@ -23,13 +23,13 @@ import static org.easymock.EasyMock.replay;
 @ExtendWith(EasyMockExtension.class)
 public class BoardCafeEasyMockTest {
 
-    UserInfoHandling userRepository;
-    LoggedUserInfoHandling loggedUserRepository;
-    GameInfoHandling gameRepository;
-    BookedGameHandling bookedGameRepository;
-    Validation validator;
+    private UserInfoHandling userRepository;
+    private LoggedUserInfoHandling loggedUserRepository;
+    private GameInfoHandling gameRepository;
+    private BookedGameHandling bookedGameRepository;
+    private Validation validator;
 
-    BoardCafe bc;
+    private BoardCafe bc;
 
     @BeforeEach
     public void setUp() {
